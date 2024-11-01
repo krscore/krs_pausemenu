@@ -1,7 +1,7 @@
 local pauseMenuActive = false
 
 local function openPauseMenu()
-   if LocalPlayer.state.invOpen then return end
+    if LocalPlayer.state.invOpen then return end
     local data = lib.callback.await('krs_pausemenu:getPlayerData', 100)
     if data then
         print('Received data: ', json.encode(data))
@@ -20,7 +20,7 @@ local function openPauseMenu()
     end
 end
 
-RegisterNUICallback('close', function(data)
+RegisterNUICallback('close', function()
     TriggerScreenblurFadeOut(0)
     SetNuiFocus(false, false)
     pauseMenuActive = false
@@ -64,13 +64,7 @@ end)
 
 RegisterNUICallback('settings', function(data, cb)
     ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_LANDING_MENU'), 0, -1)
-    SetNuiFocus(false, false)
-    pauseMenuActive = false
-    cb('ok')
-end)
-
-RegisterNUICallback('logout', function(data, cb)
-    TriggerServerEvent("krs_pausemenu:exitGame")
+    TriggerScreenblurFadeOut(0)
     SetNuiFocus(false, false)
     pauseMenuActive = false
     cb('ok')
@@ -81,5 +75,28 @@ RegisterNUICallback('relog', function(data, cb)
     TriggerScreenblurFadeOut(0)
     SetNuiFocus(false, false)
     pauseMenuActive = false
+    cb('ok')
+end)
+
+RegisterNUICallback('logout', function(data, cb)
+    lib.print.info("Opening logout dialog")
+    local alert = lib.alertDialog({
+        header = 'Logout Dialog',
+        content = 'Are you sure you want to log out?',
+        centered = true,
+        cancel = true
+    })
+    if alert == 'cancel' then
+        lib.print.info("Logout canceled")
+        TriggerScreenblurFadeOut(0)
+        SetNuiFocus(false, false)
+        pauseMenuActive = true  
+        openPauseMenu()        
+    elseif alert == 'confirm' then
+        lib.print.info("Logout confirmed")
+        TriggerServerEvent("krs_pausemenu:exitGame")
+        SetNuiFocus(false, false)
+        pauseMenuActive = false
+    end
     cb('ok')
 end)
