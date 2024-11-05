@@ -29,12 +29,10 @@ end)
 local function updatePauseMenu()
     while true do
         Wait(0)
-        if pauseMenuActive then
-            DisableControlAction(1, 200, true) 
-            if IsPauseMenuActive() then
-                TriggerScreenblurFadeOut(0)
-                pauseMenuActive = false
-            end
+        DisableControlAction(1, 200, true)
+        if IsPauseMenuActive() then
+            TriggerScreenblurFadeOut(0)
+            pauseMenuActive = false
         end
     end
 end
