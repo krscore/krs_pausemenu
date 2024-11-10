@@ -4,7 +4,6 @@ local function openPauseMenu()
     if LocalPlayer.state.invOpen then return end
     local data = lib.callback.await('krs_pausemenu:getPlayerData', 100)
     if data then
-        print('Received data: ', json.encode(data))
         SendNUIMessage({
             action = 'openPauseMenu',
             balance = data.balance,
