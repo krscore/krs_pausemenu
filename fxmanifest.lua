@@ -8,17 +8,16 @@ name 'krs_pausemenu'
 author "karos7804"
 
 shared_scripts {
-    '@es_extended/imports.lua',
     '@ox_lib/init.lua',
     'shared/*.lua'
 }
 
 client_scripts {
-    'client/*.lua', 
+    'client/*.lua',
 }
 
 server_scripts {
-    'server/*.lua', 
+    'server/*.lua',
 }
 
 ui_page 'ui/index.html'
