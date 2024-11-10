@@ -1,6 +1,8 @@
 local Framework
 if GetResourceState('es_extended') == 'started' then
     Framework = require 'server.bridge.esx'
+elseif GetResourceState('ox_core') == 'started' then
+    Framework = require 'server.bridge.ox'
 end
 
 
