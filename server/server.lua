@@ -1,20 +1,16 @@
+local Framework
+if GetResourceState('es_extended') == 'started' then
+    Framework = require 'server.bridge.esx'
+end
+
 
 lib.callback.register('krs_pausemenu:getPlayerData', function(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
+    local data = Framework.GetPlayerData(source)
 
-    if not xPlayer then
+    if not data then
         print('Error: Player not found with source ID ' .. source)
         return nil
     end
-
-    local data = {
-        balance = xPlayer.getAccount("bank").money,
-        wallet = xPlayer.getAccount("money").money,
-        dirtyMoney = xPlayer.getAccount("black_money").money,
-        playerName = xPlayer.getName(),
-        jobName = xPlayer.job.name,
-        sex = xPlayer.get('sex') 
-    }
 
     return data
 end)
