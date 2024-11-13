@@ -1,22 +1,22 @@
-✨ krs_pausemenu – The Pause Menu That Redefines Your FiveM Gaming Experience ✨
+**krs_pausamenu** is a custom pause menu designed to provide useful features and intuitive navigation during gameplay. The menu includes:  
 
-🔹 What is krs_pausemenu?
-krs_pausemenu is a custom pause menu script for FiveM, designed to be simple, sleek, and highly functional. Built with an intuitive interface using HTML, CSS, and JavaScript, this menu provides a personalized and complete experience every time you pause.
+- **Main Buttons**:  
+  - **Settings**: Allows the player to access and modify game configurations, such as audio, graphics, and controls.  
+  - **Relog Player**: A quick option to reconnect the character, useful in case of disconnections or technical issues.  
+  - **Map**: Opens the game map to view the current position and plan movements.  
+  - **Exit Game**: Safely closes the game and returns to the desktop.  
 
-🔹 Key Features
+- **Player Information Box**:  
+  - A dedicated area displaying useful details about the player, such as their name, gender, bank balance, cash on hand, and dirty money.  
 
-Player Info: Quickly check essential player details and stats to track your progress at a glance.
-Map Interaction: Access the map with interactive options for a richer and more detailed navigation experience.
-Customizable Settings: Adjust your game preferences on the go, so you always have complete control.
-Relog & Exit: Seamlessly transition from pause to reconnection or exit the game with a single click.
+The interface is designed to be clean and intuitive, offering a functional and informative pause experience that enhances overall gameplay.  
 
-🔹 Why Choose krs_pausemenu?
-Designed to be lightweight and straightforward, krs_pausemenu gives you everything you need during pause without slowing down gameplay. Its modern, smooth interface ensures quick access to all essential options, saving you time and enhancing your FiveM experience.
 
 🛠 *Framework:*
   - ESX
 
 📦 *Dipendenze:*
   - ox_lib
+
 
 ![Screenshot_2024-10-25_211720](https://github.com/user-attachments/assets/9c3a0613-6eb4-4472-92dd-c06642a71d05)
