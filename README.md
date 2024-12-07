@@ -14,6 +14,7 @@ The interface is designed to be clean and intuitive, offering a functional and i
 
 🛠 *Framework:*
   - ESX
+  - QBX
 
 📦 *Dipendenze:*
   - ox_lib
