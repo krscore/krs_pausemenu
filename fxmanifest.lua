@@ -8,7 +8,6 @@ name 'krs_pausemenu'
 author "karos7804"
 
 shared_scripts {
-    '@es_extended/imports.lua',
     '@ox_lib/init.lua',
     'shared/*.lua'
 }
@@ -28,4 +27,8 @@ files {
     'ui/style.css',
     'ui/script.js',
     'ui/map.png',
+}
+
+dependencies {
+    'ox_lib',
 }
