@@ -9,7 +9,6 @@ author "karos7804"
 
 shared_scripts {
     '@ox_lib/init.lua',
-    'shared/*.lua'
 }
 
 client_scripts {
