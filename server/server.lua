@@ -2,14 +2,17 @@
 
 lib.callback.register('krs_pausemenu:getPlayerData', function(source)
     local function getESXPlayerData(source)
-        local ESX = GetResourceState('es_extended'):find('start') and exports['es_extended']:getSharedObject() or nil
+        local ESX = exports.es_extended:getSharedObject()
+        if not ESX then return nil, 'ESX non avviato' end
         local xPlayer = ESX.GetPlayerFromId(source)
-        if not xPlayer then return nil, 'Player not found with source ID ' .. source end
+        if not xPlayer then return nil, 'Player non trovato in ESX con ID ' .. source end
+        local dirtyMoney = exports.ox_inventory:Search(source, 'count', 'black_money')
+        local wallet = exports.ox_inventory:Search(source, 'count', 'money')
 
         return {
             balance = xPlayer.getAccount("bank").money,
-            wallet = xPlayer.getAccount("money").money,
-            dirtyMoney = xPlayer.getAccount("black_money").money,
+            wallet = wallet,
+            dirtyMoney = dirtyMoney,
             playerName = xPlayer.getName(),
             jobName = xPlayer.job.name,
             sex = xPlayer.get('sex') and "male" or "female"
@@ -18,10 +21,10 @@ lib.callback.register('krs_pausemenu:getPlayerData', function(source)
 
     local function getQBXPlayerData(source)
         local Player = exports.qbx_core:GetPlayer(source)
-        if not Player then return nil, 'Player not found with source ID ' .. source end
+        if not Player then return nil, 'Player non trovato in QBX con ID ' .. source end
         local firstName = Player.PlayerData.charinfo.firstname or 'Firstname'
         local lastName = Player.PlayerData.charinfo.lastname or 'Lastname'
-        local playerName = firstName .. ' ' .. lastName  
+        local playerName = firstName .. ' ' .. lastName
         local dirtyMoney = exports.ox_inventory:Search(source, 'count', 'black_money')
         local wallet = exports.ox_inventory:Search(source, 'count', 'money')
 
@@ -35,14 +38,14 @@ lib.callback.register('krs_pausemenu:getPlayerData', function(source)
         }
     end
 
-    if ESX then
+    if GetResourceState('es_extended'):find('start') then
         local data, err = getESXPlayerData(source)
         if not data then
             print(err)
             return nil
         end
         return data
-    elseif exports.qbx_core then
+    elseif GetResourceState('qbx_core'):find('start') then
         local data, err = getQBXPlayerData(source)
         if not data then
             print(err)
@@ -50,7 +53,7 @@ lib.callback.register('krs_pausemenu:getPlayerData', function(source)
         end
         return data
     else
-        print('Error: No compatible framework detected.')
+        print('Errore: Nessun framework compatibile rilevato.')
         return nil
     end
 end)
